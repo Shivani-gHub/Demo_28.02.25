@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jan Udyog: Academic Details</title>
+    <script>
+        function toggleSection(sectionId, yesOptionId) {
+            const section = document.getElementById(sectionId);
+            const yesOption = document.getElementById(yesOptionId);
+            section.style.display = yesOption.checked ? 'block' : 'none';
+        }
+
+        function populateYearDropdown(id, startYear, endYear) {
+            const dropdown = document.getElementById(id);
+            dropdown.innerHTML = '<option value="">Year not mentioned</option>';
+            for (let year = endYear; year >= startYear; year--) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                dropdown.appendChild(option);
+            }
+        }
+
+        function checkEligibility() {
+            const yearOfBirth = parseInt(document.getElementById("year_of_birth").value);
+            const currentYear = new Date().getFullYear();
+            const age = currentYear - yearOfBirth;
+
+            if (isNaN(yearOfBirth) || age < 16) {
+                document.getElementById("eligibility_message").style.display = "block";
+                document.getElementById("academic_details").style.display = "none";
+            } else {
+                document.getElementById("eligibility_message").style.display = "none";
+                document.getElementById("academic_details").style.display = "block";
+                populateYearDropdown("tenth_passing_year", yearOfBirth, currentYear);
+                populateYearDropdown("twelfth_passing_year", yearOfBirth, currentYear);
+                populateYearDropdown("bachelors_passing_year", yearOfBirth, currentYear);
+                populateYearDropdown("masters_passing_year", yearOfBirth, currentYear);
+                populateYearDropdown("phd_completion_year", yearOfBirth, currentYear);
+            }
+        }
+
+        // Prevent form submission
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevents the form from submitting
+            alert("Form submitted successfully!"); // Example action
+        }
+
+        window.onload = function () {
+            const currentYear = new Date().getFullYear();
+            populateYearDropdown("year_of_birth", 1900, currentYear);
+        };
+    </script>
+</head>
+
+<body style="font-family: Arial, sans-serif; background-color: #fff3e0;">
+
+    <h1 style="text-align: center; color: navy;">Jan Udyog: Academic Details</h1>
+
+    <!-- Year of Birth Selection -->
+    <div style="width: 60%; margin: auto; padding: 20px;">
+        <label for="year_of_birth">Year of Birth:</label>
+        <select id="year_of_birth" onchange="checkEligibility()" style="width: 100%; padding: 5px;"></select>
+    </div>
+
+    <!-- Eligibility Message -->
+    <div id="eligibility_message" style="display: none; text-align: center; color: red; font-size: 18px;">
+        You are not eligible for the Jan Udyog Scheme.
+    </div>
+
+    <!-- Academic Details Form -->
+    <form id="academic_details" onsubmit="handleSubmit(event)" style="display: none; width: 60%; margin: auto; border: 1px solid gray; padding: 20px;">
+        <table style="width: 100%;"> 
+            <!-- Class 10 Details -->
+            <tr>
+                <td>Class 10 School Name:</td>
+                <td><input type="text" name="tenth_school" style="width: 100%;"></td>
+            </tr>
+            <tr>
+                <td>Class 10 GPA/Percentage:</td>
+                <td><input type="text" name="tenth_score" style="width: 100%;"></td>
+            </tr>
+            <tr>
+                <td>Year of Passing Class 10:</td>
+                <td><select id="tenth_passing_year" name="tenth_passing_year" style="width: 100%;"></select></td>
+            </tr>
+            <!-- Bachelor's Degree Details -->
+            <tr>
+                <td>Have you completed a Bachelor's Degree?</td>
+                <td>
+                    <input type="radio" name="bachelors_completed" id="bachelors_yes" value="Yes" onclick="toggleSection('bachelors_section', 'bachelors_yes')"> Yes
+                    <input type="radio" name="bachelors_completed" id="bachelors_no" value="No" onclick="toggleSection('bachelors_section', 'bachelors_yes')"> No
+                </td>
+            </tr>
+            <tr id="bachelors_section" style="display: none;">
+                <td colspan="2">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>Bachelor's Degree Institution:</td>
+                            <td><input type="text" name="bachelors_institution" style="width: 100%;"></td>
+                        </tr>
+                        <tr>
+                            <td>Bachelor's Degree Percentage:</td>
+                            <td><input type="text" name="bachelors_percentage" style="width: 100%;"></td>
+                        </tr>
+                        <tr>
+                            <td>Year of Passing Bachelor's Degree:</td>
+                            <td><select id="bachelors_passing_year" name="bachelors_passing_year" style="width: 100%;"></select></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Master's Degree Details -->
+            <tr>
+                <td>Have you completed a Master's Degree?</td>
+                <td>
+                    <input type="radio" name="masters_completed" id="masters_yes" value="Yes" onclick="toggleSection('masters_section', 'masters_yes')"> Yes
+                    <input type="radio" name="masters_completed" id="masters_no" value="No" onclick="toggleSection('masters_section', 'masters_yes')"> No
+                </td>
+            </tr>
+            <tr id="masters_section" style="display: none;">
+                <td colspan="2">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>Master's Degree Institution:</td>
+                            <td><input type="text" name="masters_institution" style="width: 100%;"></td>
+                        </tr>
+                        <tr>
+                            <td>Master's Degree Percentage:</td>
+                            <td><input type="text" name="masters_percentage" style="width: 100%;"></td>
+                        </tr>
+                        <tr>
+                            <td>Year of Passing Master's Degree:</td>
+                            <td><select id="masters_passing_year" name="masters_passing_year" style="width: 100%;"></select></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- PhD Details -->
+            <tr>
+                <td>Have you completed a PhD?</td>
+                <td>
+                    <input type="radio" name="phd_completed" id="phd_yes" value="Yes" onclick="toggleSection('phd_section', 'phd_yes')"> Yes
+                    <input type="radio" name="phd_completed" id="phd_no" value="No" onclick="toggleSection('phd_section', 'phd_yes')"> No
+                </td>
+            </tr>
+            <tr id="phd_section" style="display: none;">
+                <td colspan="2">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>PhD Institution:</td>
+                            <td><input type="text" name="phd_institution" style="width: 100%;"></td>
+                        </tr>
+                        <tr>
+                            <td>Year of PhD Completion:</td>
+                            <td><select id="phd_completion_year" name="phd_completion_year" style="width: 100%;"></select></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Submit Button -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button type="submit" style="padding: 10px 20px; background-color: navy; color: white;">Submit</button>
+        </div>
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jan Udyog: Personal Information</title>
+    <script>
+        // Function to toggle the dropdown based on 'Yes' or 'No' selection
+        function toggleSiblingsDropdown() {
+            const yesOption = document.getElementById("yes");
+            const siblingsDropdown = document.getElementById("siblings-count");
+
+            if (yesOption.checked) {
+                siblingsDropdown.style.display = "block";
+            } else {
+                siblingsDropdown.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f9f9f9;">
+
+    <h1 style="text-align: center; color: navy;">Personal Information</h1>
+
+    <!-- Form for Personal Information -->
+    <form action="#" method="post" style="width: 50%; margin: auto; border: 1px solid gray; padding: 20px;">
+        <table style="width: 100%;">
+            <!-- Full Name -->
+            <tr>
+                <td style="padding: 10px;">Full Name:</td>
+                <td><input type="text" name="full_name" style="width: 100%; padding: 5px;" required></td>
+            </tr>
+
+            <!-- Date of Birth -->
+            <tr>
+                <td style="padding: 10px;">Date of Birth:</td>
+                <td><input type="date" name="dob" style="width: 100%; padding: 5px;"></td>
+            </tr>
+
+            <!-- Gender -->
+            <tr>
+                <td style="padding: 10px;">Gender:</td>
+                <td>
+                    <input type="radio" name="gender" value="male"> Male
+                    <input type="radio" name="gender" value="female"> Female
+                    <input type="radio" name="gender" value="other"> Other
+                </td>
+            </tr>
+
+            <!-- Email -->
+            <tr>
+                <td style="padding: 10px;">Email:</td>
+                <td><input type="email" name="email" style="width: 100%; padding: 5px;" required></td>
+            </tr>
+
+            <!-- Phone Numbers -->
+            <tr>
+                <td style="padding: 10px;">Phone Number 1:</td>
+                <td><input type="tel" name="phone1" style="width: 100%; padding: 5px;"></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Phone Number 2:</td>
+                <td><input type="tel" name="phone2" style="width: 100%; padding: 5px;"></td>
+            </tr>
+
+            <!-- Father's Details -->
+            <tr>
+                <td style="padding: 10px;">Father's Name:</td>
+                <td><input type="text" name="father_name" style="width: 100%; padding: 5px;" required></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Father's Occupation:</td>
+                <td><input type="text" name="father_occupation" style="width: 100%; padding: 5px;" required></td>
+            </tr>
+
+            <!-- Mother's Details -->
+            <tr>
+                <td style="padding: 10px;">Mother's Name:</td>
+                <td><input type="text" name="mother_name" style="width: 100%; padding: 5px;" required></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px;">Mother's Occupation:</td>
+                <td><input type="text" name="mother_occupation" style="width: 100%; padding: 5px;" required></td>
+            </tr>
+
+            <!-- Do You Have Siblings -->
+            <tr>
+                <td style="padding: 10px;">Do you have siblings?</td>
+                <td style="padding: 10px;">
+                    <input type="radio" id="yes" name="siblings" value="yes" onclick="toggleSiblingsDropdown()"> Yes
+                    <input type="radio" id="no" name="siblings" value="no" onclick="toggleSiblingsDropdown()"> No
+                </td>
+            </tr>
+            
+            <!-- Dropdown for "How many siblings?" -->
+            <tr id="siblings-count" style="display: none;">
+                <td style="padding: 10px;">How many siblings?</td>
+                <td style="padding: 10px;">
+                    <select name="siblings_number">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </td>
+            </tr>
+
+            <!-- Submit Button -->
+            <tr>
+                <td colspan="2" style="text-align: center; padding-top: 20px;">
+                    <button type="submit" style="color: white; background: blue; font-size: 15px; font-weight: bold; padding: 10px 20px;">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
+
